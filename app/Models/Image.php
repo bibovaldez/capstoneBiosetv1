@@ -9,5 +9,10 @@ class Image extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['encrypted_image', 'recognition_result'];
+    protected $fillable = [
+        'user_id',
+        'building_id',
+        'encrypted_image',
+        'recognition_result_encrypted',
+    ];
 }

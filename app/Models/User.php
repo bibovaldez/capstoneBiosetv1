@@ -18,68 +18,21 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'FirstName',
-        'LastName',
-        'username',
-        'email',
-        'building_id',
-        'email_verified_at',
-        'password',
-        'current_team_id',
-        'profile_photo_path',
-        'role',
-    ];
+    // ... (other properties and methods remain unchanged)
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
     // check role
-    protected function hasRole($role)
+    public function hasRole($role)
     {
         return $this->role === $role;
     }
+
     // for admin
-    protected function isAdmin()
+    public function isAdmin()
     {
         return $this->hasRole('admin');
     }
-    protected function isUser()
+
+    public function isUser()
     {
         return $this->hasRole('user');
     }

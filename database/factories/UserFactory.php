@@ -24,6 +24,17 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        // $table->id();
+        // $table->string('name');
+        // $table->string('username')->unique();
+        // $table->string('email')->unique();
+        // $table->foreignId('building_id')->nullable();
+        // $table->timestamp('email_verified_at')->nullable();
+        // $table->string('password');
+        // $table->rememberToken();
+        // $table->string('profile_photo_path', 2048)->nullable();
+        // $table->timestamps();
+        // $table->enum('role', ['admin', 'user'])->default('user');
         return [
             'name' => $this->faker->name,
             'username' => $this->faker->unique()->userName,
@@ -33,6 +44,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('11111111'),
             'remember_token' => Str::random(10),
             'profile_photo_path' => null,
+            'role' => 'user',
         ];
     }
 

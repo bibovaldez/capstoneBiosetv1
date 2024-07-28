@@ -14,6 +14,7 @@
 
         <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}" id="loginForm">
             @csrf
+            
 
             <input type="hidden" class="g-recaptcha" name="recaptcha_token" id="recaptcha_token">
 

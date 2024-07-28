@@ -182,6 +182,7 @@
         //     xhr.setRequestHeader("X-CSRF-TOKEN", "{{ csrf_token() }}");
 
         //     xhr.upload.addEventListener("progress", updateProgress);
+
         //     xhr.addEventListener("readystatechange", () => handleReadyStateChange(xhr, fileSize));
 
         //     xhr.onerror = handleUploadError;
@@ -225,13 +226,21 @@
 
         function getUploadStatus(status) {
             switch (status) {
-                case 200:
+                case 404:
                     return {
                         icon: "exclamation-circle", text: "No chicken detected", color: "red"
                     };
                 case 201:
                     return {
                         icon: "check", text: "Image Uploaded", color: "green"
+                    };
+                case 202:
+                    return {
+                        icon: "exclamation-triangle", text: "Image Required", color: "red"
+                    };
+                case 204:
+                    return {
+                        icon: "exclamation-triangle", text: "Invalid Image Format", color: "red"
                     };
                 case 413:
                     return {
@@ -250,7 +259,7 @@
 
         function getAlertConfig(status) {
             switch (status) {
-                case 200:
+                case 404:
                     return {
                         title: "Warning", text: "No chicken detected", icon: "warning"
                     };
@@ -258,13 +267,22 @@
                     return {
                         title: "Success", text: "Image uploaded successfully", icon: "success"
                     };
+                case 202:
+                    return {
+                        title: "Warning", text: "Image is required", icon: "error"
+                    };
+                case 204:
+                    return {
+                        title: "Warning", text: "Invalid image format, please try again", icon: "error"
+                    };
                 case 413:
                     return {
                         title: "Warning", text: "The file is too large, please try again", icon: "warning"
                     };
                 case 500:
                     return {
-                        title: "Failed", text: "Please try again later, the system is under maintenance", icon: "error"
+                        title: "Failed", text: "Please try again later, the system is under maintenance", icon:
+                            "error"
                     };
                 default:
                     return {
